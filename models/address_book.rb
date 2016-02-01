@@ -28,3 +28,12 @@ class AddressBook
       @entries.delete(delete_entry)
      end
   end
+
+  require_relative '../controllers/menu_controller'
+
+  menu = MenuController.new
+
+  system "clear"
+  puts "Welcome to AddressBloc!"
+
+  menu.main_menu
