@@ -10,26 +10,6 @@ RSpec.describe AddressBook do
     expect(entry.email).to eq expected_email
   end
 
-  describe "display_entry" do
-   it "checks the first entry" do
-     book.import_from_csv("entries.csv")
-     first_entry = book.display_entry(0)
-     check_entry(first_entry, "Bill", "555-555-4854", "Bill@blocmail.com")
-   end
-
-   it "checks for the second entry" do
-     book.import_from_csv("entries.csv")
-     second_entry = book.get_entry(1)
-     check_entry(second_entry, "Bob", "555-555-5415", "bob@blocmail.com" )
-   end
-
-    it "checks for the last entry" do
-     book.import_from_csv("entries.csv")
-     second_entry = book.get_entry.last
-     check_entry(last_entry, "Mic", "555-555-3660", "joe@blocmail.com" )
-  end
- end
-
  describe "import_from_csv" do
       it "imports the correct number of entries" do
 
@@ -67,5 +47,37 @@ RSpec.describe AddressBook do
         entry_five = book.entries[4]
         check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
       end
-   end
+    end
+   describe "import from csv_2" do
+    it "imports the correct number of entries from csv_2" do
+
+       book.import_from_csv("entries_2.csv")
+       book_size = book.entries.size
+       expect(book_size).to eq 4
+     end
+
+    it "imports the 1st entry" do
+     book.import_from_csv("entries_2.csv")
+     entry_one = book.entries[0]
+     check_entry(entry_one, "Beth", "432-321-2222", "beth@sanchez.com")
+    end
+
+    it "imports the 2nd entry" do
+       book.import_from_csv("entries_2.csv")
+       entry_two = book.entries[1]
+       check_entry(entry_two, "Jerry", "433-322-2211", "jerry@hotmail.com")
+     end
+
+     it "imports the 3rd entry" do
+       book.import_from_csv("entries_2.csv")
+       entry_three = book.entries[2]
+       check_entry(entry_three, "Mortimer", "443-332-2221", "morty@gmail.com")
+     end
+
+     it "imports the 4th entry" do
+       book.import_from_csv("entries_2.csv")
+       entry_four = book.entries[3]
+       check_entry(entry_four, "Rick", "444-333-2222", "rickster@gmail.com")
+     end
+  end
 end
