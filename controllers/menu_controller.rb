@@ -39,6 +39,7 @@ require_relative '../models/address_book'
        main_menu
      when 5
        system "clear"
+       puts "Please input a number"
        display_entry
        main_menu
      when 6
@@ -106,12 +107,12 @@ def view_all_entries
    end
 
    def display_entry(entry)
-     number = gets.chomp
-     @address_book.entries.each do |entry|
-       if number == entry
-       puts entry.to_s
+     number = gets.chomp.to_i
+     if number.is_a? Integer
+       entry = @address_book.get_entry(number)
+       puts entry.to_s << "\n\n"
      else
-       system "clear"
        puts "#{number} is not a valid input, please input a valid number"
+       get_entry
      end
-   end 
+   end
